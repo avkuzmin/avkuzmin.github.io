@@ -32,7 +32,10 @@
         </div></noscript>
     <!-- //Rating Mail.ru counter -->
     <form>
-        <div onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: 'customEvent'});">
+        <h1 id="lvid" onclick="document.getElementById('lvid').innerHTML = `LVID: ${_tmr.getClientID()}`">
+            LVID:
+        </h1>
+        <div onclick="/*console.log(_tmr.getClientID()); */_tmr.push({id: '3250912', type: 'reachGoal', goal: 'customEvent'});">
             Custom event no UserID
         </div>
         <div onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: 'customEvent', userid: '1'});">
