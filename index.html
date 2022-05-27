@@ -33,19 +33,29 @@
     <!-- //Rating Mail.ru counter -->
     <form>
         <h1 id="lvid" onclick="document.getElementById('lvid').innerHTML = `LVID: ${_tmr.getClientID()}`">
-            LVID:
+            LVID: <i>click to get LVID</i>
         </h1>
-        <div onclick="/*console.log(_tmr.getClientID()); */_tmr.push({id: '3250912', type: 'reachGoal', goal: 'customEvent'});">
-            Custom event no UserID
+        <div>
+            UserID<br>
+            <input type="text" value="12345" id="userID" style="width:250px">
+            <br><br>
         </div>
-        <div onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: 'customEvent', userid: '1'});">
-            Custom event with UserID
+        <div>
+            Event name<br>
+            <input type="text" value="customEvent" id="eventName" style="width:250px">
+            <br>
         </div>
-        <div onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: 'mt_registration', userid: '1'});">
-            Registration
+        <div>
+            <br><input type="button" value="Send custom event with no UserID" onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: document.getElementById('eventName').value});" style="width:250px">
         </div>
-        <div onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: 'mt_login', userid: '1'});">
-            Authorization
+        <div>
+            <br><input type="button" value="Send custom event with UserID" onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: document.getElementById('eventName').value, userid: document.getElementById('userID').value});" style="width:250px">
+        </div>
+        <div>
+            <br><input type="button" value="Send registration event" onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: 'mt_registration', userid: document.getElementById('userID').value});" style="width:250px">
+        </div>
+        <div>
+            <br><input type="button" value="Send authorization event" onclick="_tmr.push({id: '3250912', type: 'reachGoal', goal: 'mt_login', userid: document.getElementById('userID').value});" style="width:250px">
         </div>
     </form>
 </body>
