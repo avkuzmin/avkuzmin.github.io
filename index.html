@@ -15,6 +15,14 @@
             appId: 51447350 // идентификатор приложения
         });
 
+        return Connect.silentAuth().then((data: VKAuthSuccessResult): Promise<VKSilentAuthPayload> => {
+          if (data.payload?.auth) {
+            // данные пользователя в data.payload
+          } else {
+            // не удалось получить сессию пользователя, нужно запросить авторизацию
+          }
+        });
+        
         const oneTapButton = Connect.buttonOneTapAuth({
             // Обязательный параметр в который нужно добавить обработчик событий приходящих из SDK
             callback: function(e) {
