@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-15",
+  "application_inputs_sha256": "4b54238b75f4a88317c7c784fa082e1c107caa6adc96a44ba3cd9a1f16dcbf77",
+  "application_git_commit": null,
+  "application_publication": "Pending publication of the main repository; fingerprint identifies the checked working copy",
+  "slide_count": 22,
+  "main_slide_count": 12,
+  "talk_seconds": 300,
+  "video_seconds": 60,
+  "adr_count": 29
+}
