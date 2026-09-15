@@ -1,8 +1,8 @@
 {
   "date": "2026-09-15",
   "application_inputs_sha256": "7090bfd59f1c253e96f1f376b085a6bc6415807041fa7a71bdefb2c6b823131d",
-  "application_git_commit": "db8c8473ea8fb2c5628911041d2095a4ef1c5543",
-  "application_publication": "https://github.com/avkuzmin/otus-ai-architect/tree/db8c8473ea8fb2c5628911041d2095a4ef1c5543",
+  "application_git_commit": "90e5f6a2e8a39de44eee12614cbd3027147eefb8",
+  "application_publication": "https://github.com/avkuzmin/otus-ai-architect/tree/90e5f6a2e8a39de44eee12614cbd3027147eefb8",
   "slide_count": 22,
   "main_slide_count": 12,
   "talk_seconds": 300,
@@ -16,7 +16,7 @@
     "github_actions_run": 34967965830,
     "image_source_commit": "7b41a56d7ce76e738071c26b4b34e0f5d502911b",
     "image_digest": "sha256:1ce4fc05e8110548fbd1128cbcc312da18b1ae1e0d56c9a81470cca2db483016",
-    "registry_visibility": "private",
+    "registry_visibility": "public",
     "compose_without_source_files": true,
     "cloud_check": "passed with local build of published source commit",
     "compose_difference_in_local_check": "image reference only: impact-assistant:local",
@@ -45,7 +45,8 @@
     "published_image_oauth_and_report_read": true,
     "published_image_retained_report_id": "ana-4c2e89e26cd54026a86cf908b3a860a8",
     "published_image_reembedded": false,
-    "published_image_application_roles_verified": 7
+    "published_image_application_roles_verified": 7,
+    "anonymous_registry_pull": "passed with empty Docker config; pinned digest verified on 2026-09-15"
   },
   "previous_validation": {
     "inputs_sha256": "ce41ef35ab2421efaac11d3c638521138e4b37fd913a2d456072d3d4e5906cb4",

@@ -22,10 +22,10 @@
 
 Редакция от 15.09.2026: 29 принятых ADR, S3 и Vault в корпоративном контуре MVP.
 [Идентификатор поставки](release.json) связывает презентацию с опубликованным
-[коммитом приложения db8c847](https://github.com/avkuzmin/otus-ai-architect/tree/db8c8473ea8fb2c5628911041d2095a4ef1c5543).
-Для запуска без клонирования нужны поставочный Compose, приватный YAML и доступ
-к приватному образу GHCR. [Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/db8c8473ea8fb2c5628911041d2095a4ef1c5543/docs/development/COMPOSE-POC.md).
-Образ опубликован, private-видимость проверена; digest закреплён в Compose.
+[коммитом приложения 90e5f6a](https://github.com/avkuzmin/otus-ai-architect/tree/90e5f6a2e8a39de44eee12614cbd3027147eefb8).
+Для запуска без клонирования нужны поставочный Compose, приватный YAML и Docker Compose. Образ GHCR публичный, токен не нужен. [Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/90e5f6a2e8a39de44eee12614cbd3027147eefb8/docs/development/COMPOSE-POC.md).
+Образ опубликован публично; digest закреплён в Compose.
+Проверено скачивание с пустым профилем Docker без авторизации.
 На ноутбуке проверены скачивание после входа в GHCR и запуск непосредственно из
 папки поставки без сборки и подключения исходников. OAuth и чтение прежнего отчёта
 успешны, знания сохранены без повторной индексации. Первичная облачная проверка
