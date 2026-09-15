@@ -62,12 +62,12 @@ docker compose up -d
 
 ```console
 docker compose ps -a
-docker compose logs --tail 50 prepare api worker operator bootstrap
+docker compose logs --tail 50 prepare api operator bootstrap
 ```
 
 Если `prepare` ещё работает, дождитесь подготовки. Норма после запуска:
 `initialize`, `migrate`, `bootstrap`, `prepare` — `Exited (0)`;
-`api` — `healthy`, `worker` и `operator` — работают.
+`api` — `healthy`, `operator` — работает.
 [Подробная диагностика и разработка](https://github.com/avkuzmin/otus-ai-architect/blob/main/docs/development/COMPOSE-OPERATIONS.md#если-запуск-не-завершился).
 
 ## Условия демонстрации

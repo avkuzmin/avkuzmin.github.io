@@ -1,7 +1,7 @@
 name: impact-cloud-poc
 x-app: &app
   platform: linux/arm64
-  image: ghcr.io/avkuzmin/impact-assistant@sha256:1ce4fc05e8110548fbd1128cbcc312da18b1ae1e0d56c9a81470cca2db483016
+  image: ghcr.io/avkuzmin/impact-assistant@sha256:d11d880bb742c6ad20640d1986afbbd895eda43ef431a654e5910cc7ba1e51f5
   init: true
   environment: &environment
     DATABASE_URL: postgresql://postgres:poc-postgres@postgres:5432/impact
@@ -103,6 +103,9 @@ services:
       bootstrap: {condition: service_completed_successfully}
   api:
     <<: *app
+    # One application container: supervised HTTP and background job processes.
+    restart: on-failure
+    stop_grace_period: 270s
     command: [api]
     ports: ['127.0.0.1:${UI_PORT:-8191}:8191']
     depends_on:
@@ -112,11 +115,6 @@ services:
       interval: 10s
       timeout: 4s
       retries: 6
-  worker:
-    <<: *app
-    command: [worker]
-    depends_on:
-      prepare: {condition: service_completed_successfully}
   operator:
     <<: *app
     command: [operator]
