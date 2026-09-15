@@ -22,9 +22,9 @@
 
 Редакция от 15.09.2026: 29 принятых ADR, S3 и Vault в корпоративном контуре MVP.
 [Идентификатор поставки](release.json) связывает презентацию с опубликованным
-[коммитом приложения 2fd0ee0](https://github.com/avkuzmin/otus-ai-architect/tree/2fd0ee0a66d051ef9658284d931edfa023dcfa25).
-Для повторения: клонируйте основной репозиторий и выполните `git checkout 2fd0ee0a66d051ef9658284d931edfa023dcfa25`.
-[Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/2fd0ee0a66d051ef9658284d931edfa023dcfa25/docs/development/COMPOSE-POC.md).
+[коммитом приложения e490619](https://github.com/avkuzmin/otus-ai-architect/tree/e490619c193b34618d952f32c671d55e69383b8a).
+Для повторения: клонируйте основной репозиторий и выполните `git checkout e490619c193b34618d952f32c671d55e69383b8a`.
+[Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/e490619c193b34618d952f32c671d55e69383b8a/docs/development/COMPOSE-POC.md).
 Основная ветка очищена от архивов; сохранены рабочие сценарии, тесты и доказательства.
 Проверены 677 тестов, 344 случая адаптера, 468 контрактных проверок и Docker-сборка.
 Новые облачные вызовы при уборке не выполнялись; записанные отчёты и видео
