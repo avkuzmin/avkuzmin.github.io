@@ -2,7 +2,7 @@
 
 [Открыть презентацию](https://avkuzmin.github.io/impact-assistant/)
 
-Основная структура: **проблема → решение → доказательство**. 22 слайда: основной рассказ 01–12 на пять минут, вспомогательные материалы 13–22.
+Основная структура: **проблема → решение → доказательство**. 24 слайда: основной рассказ 01–12 на пять минут, вспомогательные материалы 13–24.
 
 - 01–02: проблема архитектора.
 - 03–09: решение и архитектура; C1/C2/оба C3/развёртывание стоят рядом на 04–08.
@@ -22,8 +22,8 @@
 
 Редакция от 15.09.2026: 29 принятых ADR, S3 и Vault в корпоративном контуре MVP.
 [Идентификатор поставки](release.json) связывает презентацию с опубликованным
-[коммитом приложения 4d08c9f](https://github.com/avkuzmin/otus-ai-architect/tree/4d08c9fcf5bac546e66a1b30f04372a06f367501).
-Для запуска без клонирования нужны поставочный Compose, приватный YAML и Docker Compose. Образ GHCR публичный, токен не нужен. [Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/4d08c9fcf5bac546e66a1b30f04372a06f367501/docs/development/COMPOSE-POC.md).
+[коммитом приложения bc18068](https://github.com/avkuzmin/otus-ai-architect/tree/bc180680bcf5654b7fe35db437e7b58baaad8af2).
+Для запуска без клонирования нужны поставочный Compose, приватный YAML и Docker Compose. Образ GHCR публичный, токен не нужен. [Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/bc180680bcf5654b7fe35db437e7b58baaad8af2/docs/development/COMPOSE-POC.md).
 Образ опубликован публично; digest закреплён в Compose. Контейнер api объединяет
 HTTP и исполнитель анализа под общим управлением процессов; operator отдельно.
 Проверены анонимное скачивание, реальный облачный анализ через API, повтор, отмена,
@@ -38,3 +38,6 @@ HTTP и исполнитель анализа под общим управлен
 
 [Короткая инструкция](START.md) · [Скачать Compose](https://avkuzmin.github.io/impact-assistant/compose.yaml).
 Положите рядом выданный автором `secrets.yaml` и выполните `docker compose up -d`.
+
+Последовательности POC: [уточнение изменения](https://avkuzmin.github.io/impact-assistant/#23)
+и [выполнение анализа](https://avkuzmin.github.io/impact-assistant/#24).
