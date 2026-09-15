@@ -22,8 +22,8 @@
 
 Редакция от 15.09.2026: 29 принятых ADR, S3 и Vault в корпоративном контуре MVP.
 [Идентификатор поставки](release.json) связывает презентацию с опубликованным
-[коммитом приложения 90e5f6a](https://github.com/avkuzmin/otus-ai-architect/tree/90e5f6a2e8a39de44eee12614cbd3027147eefb8).
-Для запуска без клонирования нужны поставочный Compose, приватный YAML и Docker Compose. Образ GHCR публичный, токен не нужен. [Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/90e5f6a2e8a39de44eee12614cbd3027147eefb8/docs/development/COMPOSE-POC.md).
+[коммитом приложения 9973944](https://github.com/avkuzmin/otus-ai-architect/tree/99739444204d69ac3013949c5e58a038c114f59c).
+Для запуска без клонирования нужны поставочный Compose, приватный YAML и Docker Compose. Образ GHCR публичный, токен не нужен. [Инструкция запуска](https://github.com/avkuzmin/otus-ai-architect/blob/99739444204d69ac3013949c5e58a038c114f59c/docs/development/COMPOSE-POC.md).
 Образ опубликован публично; digest закреплён в Compose.
 Проверено скачивание с пустым профилем Docker без авторизации.
 На ноутбуке проверены скачивание после входа в GHCR и запуск непосредственно из
@@ -34,3 +34,8 @@
 проверок. При упаковке выполнялись целевые проверки; повторного полного прогона не было.
 Записанное видео сохраняет прежний результат и его ограничения. Новая проверка
 упаковки также не доказывает правильность всех утверждений модели.
+
+## Запуск демонстрации
+
+[Короткая инструкция](START.md) · [Скачать Compose](https://avkuzmin.github.io/impact-assistant/compose.yaml).
+Положите рядом выданный автором `secrets.yaml` и выполните `docker compose up -d`.

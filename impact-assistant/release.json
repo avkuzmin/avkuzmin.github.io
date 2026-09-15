@@ -1,8 +1,8 @@
 {
   "date": "2026-09-15",
   "application_inputs_sha256": "7090bfd59f1c253e96f1f376b085a6bc6415807041fa7a71bdefb2c6b823131d",
-  "application_git_commit": "90e5f6a2e8a39de44eee12614cbd3027147eefb8",
-  "application_publication": "https://github.com/avkuzmin/otus-ai-architect/tree/90e5f6a2e8a39de44eee12614cbd3027147eefb8",
+  "application_git_commit": "99739444204d69ac3013949c5e58a038c114f59c",
+  "application_publication": "https://github.com/avkuzmin/otus-ai-architect/tree/99739444204d69ac3013949c5e58a038c114f59c",
   "slide_count": 22,
   "main_slide_count": 12,
   "talk_seconds": 300,
