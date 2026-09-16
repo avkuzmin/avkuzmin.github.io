@@ -71,11 +71,11 @@ docker compose logs --tail 50 prepare api operator bootstrap
 Если `prepare` ещё работает, дождитесь подготовки. Норма после запуска:
 `initialize`, `migrate`, `bootstrap`, `prepare` — `Exited (0)`;
 `api` — `healthy`, `operator` — работает.
-[Подробная диагностика и разработка](https://github.com/avkuzmin/otus-ai-architect/blob/a9e1cfe867e88c514554f6aa778481c8c7172b46/docs/development/COMPOSE-OPERATIONS.md#если-запуск-не-завершился).
+[Подробная диагностика и разработка](https://github.com/avkuzmin/otus-ai-architect/blob/b42f1f65be81773fd1b5ba5303d6bd603a9795b2/docs/development/COMPOSE-OPERATIONS.md#если-запуск-не-завершился).
 
 ## Условия демонстрации
 
 Храните `secrets.yaml` приватно. Подготовка данных и новые анализы используют платные
 модели Yandex Cloud. Модель `gpt-oss-20b` заявлена доступной до **30 октября 2026 года**;
 после этой даты потребуется проверенная замена. Стенд предназначен для локального запуска.
-[Передача ключа](https://github.com/avkuzmin/otus-ai-architect/blob/a9e1cfe867e88c514554f6aa778481c8c7172b46/docs/development/SECRET-DELIVERY.md) · [Презентация и запись демонстрации](https://avkuzmin.github.io/impact-assistant/).
+[Передача ключа](https://github.com/avkuzmin/otus-ai-architect/blob/b42f1f65be81773fd1b5ba5303d6bd603a9795b2/docs/development/SECRET-DELIVERY.md) · [Презентация и запись демонстрации](https://avkuzmin.github.io/impact-assistant/).

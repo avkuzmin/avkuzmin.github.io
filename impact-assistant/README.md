@@ -21,9 +21,9 @@
 ## Соответствие материалам проекта
 
 Редакция 16.09.2026: 29 принятых ADR. [Поставка](release.json) связана с
-[кодом приложения a9e1cfe](https://github.com/avkuzmin/otus-ai-architect/tree/a9e1cfe867e88c514554f6aa778481c8c7172b46).
+[кодом приложения b42f1f6](https://github.com/avkuzmin/otus-ai-architect/tree/b42f1f65be81773fd1b5ba5303d6bd603a9795b2).
 C1/C2 и развёртывание описывают целевой MVP. Обе C3 теперь описывают существующие
-классы и модули POC; [соответствие исходникам](https://github.com/avkuzmin/otus-ai-architect/blob/a9e1cfe867e88c514554f6aa778481c8c7172b46/docs/architecture/code-components.md).
+классы и модули POC; [соответствие исходникам](https://github.com/avkuzmin/otus-ai-architect/blob/b42f1f65be81773fd1b5ba5303d6bd603a9795b2/docs/architecture/code-components.md).
 Корпоративные S3/GPUStack/Vault отделены от фактических SeaweedFS/Yandex/Vault dev.
 
 Служебные секреты POC получает из Vault с отдельными read-токенами api/operator/prepare.
@@ -35,7 +35,7 @@ C1/C2 и развёртывание описывают целевой MVP. Об�
 отзыв доступа, отказ модели/Vault, синхронизация новой версии и полный перезапуск.
 Прошли 682 серверных unit-теста, 11 интеграционных проверок синхронизации,
 4 проверки настроек и 3 проверки процессов. UI не автоматизировался.
-[Протокол и ограничения модели](https://github.com/avkuzmin/otus-ai-architect/blob/a9e1cfe867e88c514554f6aa778481c8c7172b46/docs/diploma/examples/vault-refactor/README.md).
+[Протокол и ограничения модели](https://github.com/avkuzmin/otus-ai-architect/blob/b42f1f65be81773fd1b5ba5303d6bd603a9795b2/docs/diploma/examples/vault-refactor/README.md).
 Запись UI остаётся историческим доказательством прежнего запуска; она не выдаётся
 за запись новой версии. `findings` не доказывает правильность каждого вывода модели.
 
