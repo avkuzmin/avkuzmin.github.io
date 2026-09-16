@@ -1,17 +1,16 @@
 name: impact-cloud-poc
 x-app: &app
   platform: linux/arm64
-  image: ghcr.io/avkuzmin/impact-assistant@sha256:d11d880bb742c6ad20640d1986afbbd895eda43ef431a654e5910cc7ba1e51f5
+  image: ghcr.io/avkuzmin/impact-assistant@sha256:54b661ce3fbfa5d182ebb0a4b52305dfb6e67366cd0bfa07f9e2fb4d36043134
   init: true
   environment: &environment
-    DATABASE_URL: postgresql://postgres:poc-postgres@postgres:5432/impact
     KC_ISSUER: http://localhost:${KC_PORT:-8180}/realms/impact
     KC_PUBLIC_URL: http://localhost:${KC_PORT:-8180}
     UI_ORIGIN: http://localhost:${UI_PORT:-8191}
     OPERATOR_ORIGIN: http://localhost:${OPERATOR_PORT:-8192}
     PYTHONUNBUFFERED: '1'
   volumes:
-    - bootstrap:/run/impact:ro
+    - api-session:/run/role:ro
   networks: [backend, outbound]
 services:
   initialize:
@@ -21,8 +20,10 @@ services:
     networks: [backend]
   postgres:
     image: pgvector/pgvector@sha256:2ba9ca5f2e7daa0f0e7723cba1ee9167bab54efd3640516a44ac1a928dd67e7a
-    environment: {POSTGRES_PASSWORD: poc-postgres, POSTGRES_DB: impact}
-    volumes: [postgres:/var/lib/postgresql]
+    environment: {POSTGRES_PASSWORD_FILE: /run/service-config/postgres-password, POSTGRES_DB: impact}
+    volumes: [postgres:/var/lib/postgresql, service-config:/run/service-config:ro]
+    depends_on:
+      initialize: {condition: service_completed_successfully}
     networks: [backend]
     healthcheck:
       test: [CMD-SHELL, 'pg_isready -U postgres -d impact']
@@ -31,12 +32,15 @@ services:
       retries: 30
   neo4j:
     image: neo4j@sha256:037cf5756f0135cbfd66b739b6df7c7c4bb100f9ce11602f6f9538e17e02c74d
+    entrypoint: [/bin/bash, -ec]
+    command: ['export NEO4J_AUTH="$$(cat /run/service-config/neo4j-auth)"; exec /startup/docker-entrypoint.sh neo4j']
     environment:
-      NEO4J_AUTH: neo4j/poc-neo4j-password
       NEO4J_server_memory_heap_initial__size: 256m
       NEO4J_server_memory_heap_max__size: 512m
       NEO4J_server_memory_pagecache_size: 256m
-    volumes: [neo4j:/data]
+    volumes: [neo4j:/data, service-config:/run/service-config:ro]
+    depends_on:
+      initialize: {condition: service_completed_successfully}
     networks: [backend]
   s3:
     image: chrislusf/seaweedfs@sha256:fc9f76fa993ad69966ffeb2f65d0318fcae39c6f8e20cf68ef7b3a5cb97769e5
@@ -65,15 +69,15 @@ services:
       retries: 30
   keycloak:
     image: quay.io/keycloak/keycloak@sha256:b0e5dbced1775de4d629f103c0a9cfc057decc62ce8d3cb1c54f8849a6c6eb62
-    command: [start-dev]
+    entrypoint: [/bin/bash, -ec]
+    command: ['export KC_BOOTSTRAP_ADMIN_PASSWORD="$$(cat /run/service-config/keycloak-admin-password)" KC_DB_PASSWORD="$$(cat /run/service-config/postgres-password)"; exec /opt/keycloak/bin/kc.sh start-dev']
+    volumes: [service-config:/run/service-config:ro]
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_BOOTSTRAP_ADMIN_PASSWORD: poc-admin
       KC_DB: postgres
       KC_DB_URL: jdbc:postgresql://postgres:5432/impact
       KC_DB_SCHEMA: keycloak
       KC_DB_USERNAME: postgres
-      KC_DB_PASSWORD: poc-postgres
       KC_HOSTNAME: http://localhost:${KC_PORT:-8180}
       KC_HTTP_ENABLED: 'true'
     ports: ['127.0.0.1:${KC_PORT:-8180}:8080']
@@ -83,12 +87,13 @@ services:
   migrate:
     <<: *app
     command: [migrate]
+    volumes: [service-config:/run/service-config:ro]
     depends_on:
       postgres: {condition: service_healthy}
   bootstrap:
     <<: *app
     command: [bootstrap]
-    volumes: [bootstrap:/run/impact, 'vault-init:/run/vault-init:ro']
+    volumes: [bootstrap:/run/impact, 'vault-init:/run/vault-init:ro', service-config:/run/service-config:ro, api-session:/run/roles/api, operator-session:/run/roles/operator, prepare-session:/run/roles/prepare]
     secrets: [poc_settings]
     depends_on:
       vault: {condition: service_healthy}
@@ -98,7 +103,10 @@ services:
   prepare:
     <<: *app
     command: [prepare]
-    volumes: [bootstrap:/run/impact:ro, 'embedding-cache:/var/lib/impact/embedding-cache']
+    environment:
+      <<: *environment
+      IMPACT_ROLE: prepare
+    volumes: [prepare-session:/run/role:ro, 'embedding-cache:/var/lib/impact/embedding-cache']
     depends_on:
       bootstrap: {condition: service_completed_successfully}
   api:
@@ -107,6 +115,9 @@ services:
     restart: on-failure
     stop_grace_period: 270s
     command: [api]
+    environment:
+      <<: *environment
+      IMPACT_ROLE: api
     ports: ['127.0.0.1:${UI_PORT:-8191}:8191']
     depends_on:
       prepare: {condition: service_completed_successfully}
@@ -119,7 +130,10 @@ services:
     <<: *app
     command: [operator]
     ports: ['127.0.0.1:${OPERATOR_PORT:-8192}:8192']
-    volumes: [bootstrap:/run/impact:ro, 'embedding-cache:/var/lib/impact/embedding-cache']
+    environment:
+      <<: *environment
+      IMPACT_ROLE: operator
+    volumes: [operator-session:/run/role:ro, 'embedding-cache:/var/lib/impact/embedding-cache']
     depends_on:
       prepare: {condition: service_completed_successfully}
 secrets:
@@ -132,6 +146,9 @@ volumes:
   neo4j:
   s3:
   bootstrap:
+  api-session:
+  operator-session:
+  prepare-session:
   embedding-cache:
 networks:
   backend: {internal: true}
